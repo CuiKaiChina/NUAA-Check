@@ -1,0 +1,25 @@
+name: nuaa
+# 每天00:30打卡
+on:
+  push:
+    branches: master
+  schedule:
+    - cron: '30 16 * * *'
+
+jobs:
+  save:
+    name: save
+    runs-on: ubuntu-latest
+    steps:
+    - name: save
+      env:
+        student_id: ${{ secrets.STUDENT_ID }}
+        password: ${{ secrets.PASSWORD }}
+        sckey: ${{ secrets.SCKEY }}
+        address: ${{ secrets.ADDRESS }}
+      run: |
+        git clone https://github.com/li1553770945/NUAA-Check .
+        sudo apt-get install python-setuptools python3-setuptools
+        pip3 install requests cpca
+        python3 main.py 
+          
