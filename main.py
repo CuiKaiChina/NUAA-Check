@@ -91,7 +91,8 @@ def save(cookies):
     headers = {
         'Cookie': cookie
     }
-    date = time.strftime("%Y%m%d")
+    time_now = datetime.datetime.now() + datetime.timedelta(hours=8)
+    date = time_now.strftime("%Y%m%d")
     params = submit_params
     params.update({'date': date})
     params.update({'address':address,'province':province,'city':city,'area':area})
